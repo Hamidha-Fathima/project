@@ -79,7 +79,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router basename="/project">   {/* ← This is the key fix */}
+    <Router>  
       <div style={{ minHeight: '100vh', backgroundColor: '#0a0a0f', color: 'white' }}>
         <Header 
           isLoggedIn={isLoggedIn} 
