@@ -1,4 +1,4 @@
-// src/App.tsx
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
@@ -79,7 +79,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>  
+    <Router basename={import.meta.env.PROD && !window.location.hostname.includes('vercel')? '/project': ''}>  
       <div style={{ minHeight: '100vh', backgroundColor: '#0a0a0f', color: 'white' }}>
         <Header 
           isLoggedIn={isLoggedIn} 
