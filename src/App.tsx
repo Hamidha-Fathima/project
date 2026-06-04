@@ -1,6 +1,6 @@
-
+// src/App.tsx
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import PersonalDetails from './components/PersonalDetails';
 import Skills from './components/Skills';
@@ -30,16 +30,16 @@ const Navigation: React.FC = () => {
   return (
     <nav style={{
       backgroundColor: '#1a1a2e',
-      padding: '15px 40px',
+      padding: '16px 40px',
       display: 'flex',
       justifyContent: 'center',
-      gap: '30px',
+      gap: '50px',
       borderBottom: '1px solid #4b5563'
     }}>
-      <Link to="/" style={{ color: '#a855f7', textDecoration: 'none', fontSize: '18px' }}>
+      <a href="#" onClick={() => handleNavigation('/')} style={{ color: location.pathname === '/' ? '#a855f7' : '#d1d5db', textDecoration: 'none', fontSize: '18px', cursor: 'pointer' }}>
         Home
-      </Link>
-      <a href="#" onClick={() => handleNavigation('/posts')} style={{ color: '#a855f7', textDecoration: 'none', fontSize: '18px', cursor: 'pointer' }}>
+      </a>
+      <a href="#" onClick={() => handleNavigation('/posts')} style={{ color: location.pathname === '/posts' ? '#a855f7' : '#d1d5db', textDecoration: 'none', fontSize: '18px', cursor: 'pointer' }}>
         Posts
       </a>
     </nav>
@@ -79,7 +79,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>
+    <Router basename="/project">   {/* ← This is the key fix */}
       <div style={{ minHeight: '100vh', backgroundColor: '#0a0a0f', color: 'white' }}>
         <Header 
           isLoggedIn={isLoggedIn} 
@@ -90,7 +90,6 @@ const App: React.FC = () => {
 
         <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
           <Routes>
-            {/* Home Route */}
             <Route path="/" element={
               <>
                 <PersonalDetails isLoggedIn={isLoggedIn} user={user || undefined} />
@@ -99,8 +98,6 @@ const App: React.FC = () => {
                 <ContactForm />
               </>
             } />
-
-            {/* Posts Route */}
             <Route path="/posts" element={<PostsPage />} />
           </Routes>
         </main>
@@ -111,11 +108,9 @@ const App: React.FC = () => {
             position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
           }}>
-            {/* Login Modal Content - Same as before */}
             <div style={{ backgroundColor: '#1f2937', padding: '40px', borderRadius: '16px', width: '100%', maxWidth: '420px' }}>
               <h2 style={{ textAlign: 'center', marginBottom: '25px' }}>Login</h2>
               <form onSubmit={handleLogin}>
-                {/* ... same login form fields as before ... */}
                 <div style={{ marginBottom: '20px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: '#9ca3af' }}>Email Address</label>
                   <input
@@ -136,7 +131,7 @@ const App: React.FC = () => {
 
                 {loginError && <p style={{ color: 'red', textAlign: 'center' }}>{loginError}</p>}
 
-                <button type="submit" style={{ width: '100%', padding: '16px', backgroundColor: '#8b5cf6', border: 'none', borderRadius: '8px', color: 'white', fontSize: '18px', marginBottom: '15px' }}>
+                <button type="submit" style={{ width: '100%', padding: '16px', backgroundColor: '#8b5cf6', border: 'none', borderRadius: '8px', color: 'white', fontSize: '18px' }}>
                   Login
                 </button>
               </form>

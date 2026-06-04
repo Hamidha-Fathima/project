@@ -42,7 +42,7 @@ const PostsPage: React.FC = () => {
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
+      <Box sx = {{display:'flex' ,justifyContent:"center", alignItems:"center" ,minHeight:"60vh"}}>
         <CircularProgress size={60} />
       </Box>
     );
@@ -65,12 +65,14 @@ const PostsPage: React.FC = () => {
           placeholder="Search by title..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          InputProps={{
+          slotProps={{
+            input:{
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon />
               </InputAdornment>
             ),
+          }
           }}
           variant="outlined"
           sx={{
@@ -87,7 +89,7 @@ const PostsPage: React.FC = () => {
       <Grid container spacing={4}>
         {currentPosts.length > 0 ? (
           currentPosts.map((post) => (
-            <Grid item xs={12} md={6} lg={4} key={post.id}>
+            <Grid size= {{ xs:12, md:6, lg:4}} key={post.id}>
               <Card 
                 sx={{ 
                   height: '100%', 
@@ -121,7 +123,7 @@ const PostsPage: React.FC = () => {
 
       
       {filteredPosts.length > 0 && (
-        <Box display="flex" justifyContent="center" sx={{ mt: 6 }}>
+        <Box sx={{ display:"flex" ,justifyContent:"center" , mt: 6 }}>
           <Pagination
             count={totalPages}
             page={currentPage}

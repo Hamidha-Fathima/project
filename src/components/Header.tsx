@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn, onLoginClick }) => {
       </div>
 
       <nav style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-        
+      
         
         {!isLoggedIn ? (
           <button

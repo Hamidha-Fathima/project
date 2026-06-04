@@ -16,9 +16,9 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({ isLoggedIn, user }) =
       
       <div style={{ marginBottom: '30px' }}>
         <img
-          src="/src/assets/millie.png"     
-          
-          alt="millie"
+          src="https://thumbs.dreamstime.com/b/woman-reading-book-smile-rehearsing-theatrical-role-dreaming-becoming-famous-actress-waving-hand-positive-girl-430266711.jpg"
+
+          alt="Hamidha"
           style={{
             width: '180px',
             height: '180px',
